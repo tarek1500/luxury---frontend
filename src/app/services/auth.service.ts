@@ -6,7 +6,7 @@ import { tap } from 'rxjs/operators'
 import { UserStorageService } from './user-storage.service';
 import { IToken } from '../models/token';
 import { IUser } from '../models/user';
-import { loginUrl, registerUrl } from './urls';
+import { loginUrl, registerUrl, logoutUrl } from './urls';
 
 @Injectable({
 	providedIn: 'root'
@@ -46,6 +46,16 @@ export class AuthService {
 				};
 
 				this.userStorageService.setUser(user);
+			}
+		));
+	}
+
+	public logout(device: string): Observable<any> {
+		return this.http.post(logoutUrl, {
+			device
+		}).pipe(tap(
+			(next) => {
+				this.userStorageService.setUser(null);
 			}
 		));
 	}

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { FormControl, Validators } from '@angular/forms';
 
 import { first } from 'rxjs/operators';
@@ -21,7 +22,7 @@ export class LoginComponent implements OnInit {
 		Validators.required
 	]);
 
-	constructor(private authService: AuthService) { }
+	constructor(private router: Router, private authService: AuthService) { }
 
 	ngOnInit(): void { }
 
@@ -33,7 +34,8 @@ export class LoginComponent implements OnInit {
 			password: this.password.value
 		}, 'web').pipe(first()).subscribe(
 			(next) => { },
-			(error) => this.isBusy = false
+			(error) => this.isBusy = false,
+			() => this.router.navigate(['/'])
 		);
 	}
 }
