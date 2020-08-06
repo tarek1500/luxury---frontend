@@ -19,6 +19,8 @@ import { AppComponent } from './app.component';
 import { SnackBarComponent } from './components/snack-bar/snack-bar.component';
 import { LoginComponent } from './pages/login/login.component';
 import { RegisterComponent } from './pages/register/register.component';
+import { GuestGuard } from './guard/guest.guard';
+import { LoggedGuard } from './guard/logged.guard';
 
 @NgModule({
 	declarations: [
@@ -48,7 +50,9 @@ import { RegisterComponent } from './pages/register/register.component';
 			provide: HTTP_INTERCEPTORS,
 			useClass: RequestInterceptor,
 			multi: true
-		}
+		},
+		GuestGuard,
+		LoggedGuard
 	],
 	bootstrap: [AppComponent]
 })
