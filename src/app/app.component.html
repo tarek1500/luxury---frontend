@@ -3,6 +3,7 @@
 		<button mat-icon-button (click)="snav.toggle()"><mat-icon>menu</mat-icon></button>
 		<span class="app-name">Title</span>
 		<span class="spacer"></span>
+		<a mat-icon-button routerLink="/login"><i class="fas fa-sign-in-alt"></i></a>
 	</mat-toolbar>
 	<mat-sidenav-container [style.marginTop.px]="mobileQuery.matches ? 56 : 0">
 		<mat-sidenav #snav [mode]="mobileQuery.matches ? 'over' : 'side'" [fixedInViewport]="mobileQuery.matches" fixedTopGap="56" [opened]="!mobileQuery.matches">
