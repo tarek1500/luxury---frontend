@@ -11,15 +11,18 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatIconModule } from '@angular/material/icon';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import { SnackBarComponent } from './components/snack-bar/snack-bar.component';
 import { LoginComponent } from './pages/login/login.component';
 import { RegisterComponent } from './pages/register/register.component';
 
 @NgModule({
 	declarations: [
 		AppComponent,
+		SnackBarComponent,
 		LoginComponent,
 		RegisterComponent
 	],
@@ -36,7 +39,8 @@ import { RegisterComponent } from './pages/register/register.component';
 		MatButtonModule,
 		MatFormFieldModule,
 		MatInputModule,
-		MatIconModule
+		MatIconModule,
+		MatSnackBarModule
 	],
 	providers: [],
 	bootstrap: [AppComponent]

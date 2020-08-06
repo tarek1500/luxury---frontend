@@ -5,6 +5,7 @@ import { Subscription } from 'rxjs';
 import { first } from 'rxjs/operators';
 import { UserStorageService } from './services/user-storage.service';
 import { AuthService } from './services/auth.service';
+import { SnackBarService } from './services/snack-bar.service';
 import { IUser } from './models/user';
 
 @Component({
@@ -23,7 +24,8 @@ export class AppComponent implements OnInit, OnDestroy {
 		media: MediaMatcher,
 		changeDetectorRef: ChangeDetectorRef,
 		private userStorageService: UserStorageService,
-		private authService: AuthService
+		private authService: AuthService,
+		private snackBarService: SnackBarService
 	) {
 		this.mobileQuery = media.matchMedia('(max-width: 600px)');
 		this.mobileQueryListener = () => changeDetectorRef.detectChanges();
@@ -45,7 +47,7 @@ export class AppComponent implements OnInit, OnDestroy {
 	onLogout(event) {
 		event.preventDefault();
 		this.authService.logout('web').pipe(first()).subscribe(
-			(next) => { }
+			(next) => this.snackBarService.showSnackBar(3000, 'Logged out successfully.', ['mat-toolbar', 'mat-accent'])
 		);
 	}
 }

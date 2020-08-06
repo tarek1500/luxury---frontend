@@ -4,6 +4,7 @@ import { FormControl, Validators } from '@angular/forms';
 
 import { first } from 'rxjs/operators';
 import { AuthService } from '../../services/auth.service';
+import { SnackBarService } from '../../services/snack-bar.service';
 
 @Component({
 	selector: 'app-register',
@@ -28,7 +29,7 @@ export class RegisterComponent implements OnInit {
 		Validators.required
 	]);
 
-	constructor(private router: Router, private authService: AuthService) { }
+	constructor(private router: Router, private authService: AuthService, private snackBarService: SnackBarService) { }
 
 	ngOnInit(): void { }
 
@@ -41,7 +42,7 @@ export class RegisterComponent implements OnInit {
 			password: this.password.value,
 			country: this.country.value
 		}, 'web').pipe(first()).subscribe(
-			(next) => { },
+			(next) => this.snackBarService.showSnackBar(3000, 'Registered successfully.', ['mat-toolbar', 'mat-accent']),
 			(error) => this.isBusy = false,
 			() => this.router.navigate(['/'])
 		);

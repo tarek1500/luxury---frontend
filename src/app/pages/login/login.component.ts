@@ -4,6 +4,7 @@ import { FormControl, Validators } from '@angular/forms';
 
 import { first } from 'rxjs/operators';
 import { AuthService } from '../../services/auth.service';
+import { SnackBarService } from '../../services/snack-bar.service';
 
 @Component({
 	selector: 'app-login',
@@ -22,7 +23,7 @@ export class LoginComponent implements OnInit {
 		Validators.required
 	]);
 
-	constructor(private router: Router, private authService: AuthService) { }
+	constructor(private router: Router, private authService: AuthService, private snackBarService: SnackBarService) { }
 
 	ngOnInit(): void { }
 
@@ -33,7 +34,7 @@ export class LoginComponent implements OnInit {
 			email: this.email.value,
 			password: this.password.value
 		}, 'web').pipe(first()).subscribe(
-			(next) => { },
+			(next) => this.snackBarService.showSnackBar(3000, 'Logged in successfully.', ['mat-toolbar', 'mat-accent']),
 			(error) => this.isBusy = false,
 			() => this.router.navigate(['/'])
 		);

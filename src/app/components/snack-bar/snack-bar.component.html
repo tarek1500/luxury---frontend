@@ -1,0 +1,13 @@
+<div class="flex">
+	<div class="data">
+		<h3 class="title">Message: {{ data.message }}</h3>
+		<ng-container *ngFor="let error of data.errors | keyvalue">
+			<h5 class="message" *ngFor="let message of error.value">{{ error.key }}: {{ message }}</h5>
+		</ng-container>
+	</div>
+	<div class="dismiss">
+		<button mat-icon-button (click)="snackBarRef.dismiss()">
+			<mat-icon>close</mat-icon>
+		</button>
+	</div>
+</div>
