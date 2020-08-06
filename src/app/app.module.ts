@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ReactiveFormsModule } from '@angular/forms';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatListModule } from '@angular/material/list';
@@ -13,6 +13,7 @@ import { MatInputModule } from '@angular/material/input';
 import { MatIconModule } from '@angular/material/icon';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 
+import { RequestInterceptor } from './interceptors/request.interceptor';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { SnackBarComponent } from './components/snack-bar/snack-bar.component';
@@ -42,7 +43,13 @@ import { RegisterComponent } from './pages/register/register.component';
 		MatIconModule,
 		MatSnackBarModule
 	],
-	providers: [],
+	providers: [
+		{
+			provide: HTTP_INTERCEPTORS,
+			useClass: RequestInterceptor,
+			multi: true
+		}
+	],
 	bootstrap: [AppComponent]
 })
 export class AppModule { }
