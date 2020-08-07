@@ -1,0 +1,49 @@
+mat-card {
+	width: 80%;
+	margin: auto;
+	margin-bottom: 16px;
+
+	mat-card-header {
+		margin-bottom: 8px;
+
+		img {
+			width: 60px;
+			height: 60px;
+		}
+
+		::ng-deep .mat-card-header-text {
+			margin-top: auto;
+			margin-bottom: auto;
+		}
+
+		mat-card-title {
+			margin-bottom: 4px;
+
+			span {
+				font-size: 12px;
+				font-weight: 400;
+				line-height: initial;
+				color: #c7c7c7;
+			}
+		}
+
+		mat-card-subtitle {
+			margin: 0px;
+
+			a {
+				text-decoration: underline;
+			}
+		}
+	}
+
+	mat-card-content {
+		mat-form-field {
+			width: 100%;
+		}
+	}
+
+	mat-card-actions {
+		padding: 0px;
+		text-align: right;
+	}
+}

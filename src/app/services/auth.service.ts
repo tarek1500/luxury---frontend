@@ -21,6 +21,7 @@ export class AuthService {
 		}).pipe(tap(
 			(next) => {
 				const user: IUser = {
+					id: 0,
 					name: '',
 					email: credentials.email,
 					country: '',
@@ -42,6 +43,7 @@ export class AuthService {
 		}).pipe(tap(
 			(next) => {
 				const user: IUser = {
+					id: 0,
 					name: data.name,
 					email: data.email,
 					country: data.country,

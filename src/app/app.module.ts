@@ -17,8 +17,10 @@ import { RequestInterceptor } from './interceptors/request.interceptor';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { SnackBarComponent } from './components/snack-bar/snack-bar.component';
+import { PostFormComponent } from './components/post-form/post-form.component';
 import { LoginComponent } from './pages/login/login.component';
 import { RegisterComponent } from './pages/register/register.component';
+import { PostComponent } from './pages/post/post.component';
 import { GuestGuard } from './guard/guest.guard';
 import { LoggedGuard } from './guard/logged.guard';
 
@@ -26,8 +28,10 @@ import { LoggedGuard } from './guard/logged.guard';
 	declarations: [
 		AppComponent,
 		SnackBarComponent,
+		PostFormComponent,
 		LoginComponent,
-		RegisterComponent
+		RegisterComponent,
+		PostComponent
 	],
 	imports: [
 		BrowserModule,
