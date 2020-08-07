@@ -14,6 +14,9 @@
 					<img src="" alt="Avatar">
 				</div>
 				<mat-divider></mat-divider>
+				<a mat-list-item routerLink="/" routerLinkActive="list-item-active" [routerLinkActiveOptions]="{ exact: true }">
+					<i class="fas fa-home fa-fw"></i> Home
+				</a>
 				<a mat-list-item routerLink="/timeline" routerLinkActive="list-item-active" [routerLinkActiveOptions]="{ exact: true }">
 					<i class="fas fa-bars fa-fw"></i> Timeline
 				</a>
