@@ -1,0 +1,5 @@
+<app-post-create (created)="onCreated($event)"></app-post-create>
+<app-post-form *ngFor="let post of posts" [post]="post" (deleted)="onDeleted($event)"></app-post-form>
+<div class="load">
+	<button mat-raised-button color="primary" [disabled]="isBusy" (click)="onLoadMore($event)">Load More</button>
+</div>

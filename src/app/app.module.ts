@@ -7,6 +7,7 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatListModule } from '@angular/material/list';
 import { MatCardModule } from '@angular/material/card';
+import { MatDividerModule } from '@angular/material/divider';
 import { MatButtonModule } from '@angular/material/button';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
@@ -18,8 +19,10 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { SnackBarComponent } from './components/snack-bar/snack-bar.component';
 import { PostFormComponent } from './components/post-form/post-form.component';
+import { CreatePostComponent } from './components/post-form/create/create.component';
 import { LoginComponent } from './pages/login/login.component';
 import { RegisterComponent } from './pages/register/register.component';
+import { TimelineComponent } from './pages/timeline/timeline.component';
 import { PostComponent } from './pages/post/post.component';
 import { GuestGuard } from './guard/guest.guard';
 import { LoggedGuard } from './guard/logged.guard';
@@ -29,8 +32,10 @@ import { LoggedGuard } from './guard/logged.guard';
 		AppComponent,
 		SnackBarComponent,
 		PostFormComponent,
+		CreatePostComponent,
 		LoginComponent,
 		RegisterComponent,
+		TimelineComponent,
 		PostComponent
 	],
 	imports: [
@@ -43,6 +48,7 @@ import { LoggedGuard } from './guard/logged.guard';
 		MatSidenavModule,
 		MatListModule,
 		MatCardModule,
+		MatDividerModule,
 		MatButtonModule,
 		MatFormFieldModule,
 		MatInputModule,

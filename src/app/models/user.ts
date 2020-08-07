@@ -6,3 +6,7 @@ export interface IUser {
 	avatar: string | ImageBitmap;
 	token: string;
 }
+
+export interface IUsers {
+	users: IUser[];
+}

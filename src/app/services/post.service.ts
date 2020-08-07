@@ -4,14 +4,44 @@ import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { tap } from 'rxjs/operators'
 import { SnackBarService } from './snack-bar.service';
-import { IPost } from '../models/post';
-import { postsUrl } from './urls';
+import { IPaginate } from '../models/paginate';
+import { IPost, IPosts } from '../models/post';
+import { postsUrl, timelineUrl } from './urls';
 
 @Injectable({
 	providedIn: 'root'
 })
 export class PostService {
 	constructor(private http: HttpClient, private snackBarService: SnackBarService) { }
+
+	public getAll(page: number, perPage: number): Observable<IPaginate<IPosts>> {
+		return this.http.get<IPaginate<IPosts>>(`${postsUrl}?page=${page}&per_page=${perPage}`).pipe(tap(
+			(next) => { },
+			(error) => {
+				this.snackBarService.showSnackBar(3000, error.error);
+			}
+		));
+	}
+
+	public getTimeline(page: number, perPage: number): Observable<IPaginate<IPosts>> {
+		return this.http.get<IPaginate<IPosts>>(`${timelineUrl}?page=${page}&per_page=${perPage}`).pipe(tap(
+			(next) => { },
+			(error) => {
+				this.snackBarService.showSnackBar(3000, error.error);
+			}
+		));
+	}
+
+	public create(post: IPost): Observable<IPost> {
+		return this.http.post<IPost>(postsUrl, {
+			body: post.body
+		}).pipe(tap(
+			(next) => { },
+			(error) => {
+				this.snackBarService.showSnackBar(3000, error.error);
+			}
+		));
+	}
 
 	public show(id: number): Observable<IPost> {
 		return this.http.get<IPost>(`${postsUrl}/${id}`).pipe(tap(

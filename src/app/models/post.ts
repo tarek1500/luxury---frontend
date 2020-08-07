@@ -7,3 +7,7 @@ export interface IPost {
 	created_at: Date;
 	created_at_human: string;
 }
+
+export interface IPosts {
+	posts: IPost[];
+}

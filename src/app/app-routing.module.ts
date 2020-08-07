@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
+import { TimelineComponent } from './pages/timeline/timeline.component';
 import { PostComponent } from './pages/post/post.component';
 import { LoginComponent } from './pages/login/login.component';
 import { RegisterComponent } from './pages/register/register.component';
@@ -9,8 +10,18 @@ import { LoggedGuard } from './guard/logged.guard';
 
 const routes: Routes = [
 	{
+		path: 'timeline',
+		component: TimelineComponent,
+		canActivate: [LoggedGuard]
+	},
+	{
 		path: 'posts',
 		component: HomeComponent,
+		canActivate: [LoggedGuard]
+	},
+	{
+		path: 'posts/:id',
+		component: PostComponent,
 		canActivate: [LoggedGuard]
 	},
 	{
