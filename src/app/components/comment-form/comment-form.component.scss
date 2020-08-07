@@ -1,6 +1,4 @@
 mat-card {
-	width: 80%;
-	margin: auto;
 	margin-bottom: 16px;
 
 	mat-card-header {
@@ -29,10 +27,6 @@ mat-card {
 
 		mat-card-subtitle {
 			margin: 0px;
-
-			a {
-				text-decoration: none;
-			}
 		}
 
 		button {
@@ -45,14 +39,6 @@ mat-card {
 	mat-card-content {
 		mat-form-field {
 			width: 100%;
-		}
-
-		mat-expansion-panel {
-			box-shadow: none;
-
-			.create-comment {
-				margin-top: 8px;
-			}
 		}
 	}
 

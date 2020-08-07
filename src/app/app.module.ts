@@ -7,6 +7,7 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatListModule } from '@angular/material/list';
 import { MatCardModule } from '@angular/material/card';
+import { MatExpansionModule } from '@angular/material/expansion';
 import { MatDividerModule } from '@angular/material/divider';
 import { MatButtonModule } from '@angular/material/button';
 import { MatFormFieldModule } from '@angular/material/form-field';
@@ -20,6 +21,7 @@ import { AppComponent } from './app.component';
 import { SnackBarComponent } from './components/snack-bar/snack-bar.component';
 import { PostFormComponent } from './components/post-form/post-form.component';
 import { CreatePostComponent } from './components/post-form/create/create.component';
+import { CommentFormComponent } from './components/comment-form/comment-form.component';
 import { LoginComponent } from './pages/login/login.component';
 import { RegisterComponent } from './pages/register/register.component';
 import { HomeComponent } from './pages/home/home.component';
@@ -34,6 +36,7 @@ import { LoggedGuard } from './guard/logged.guard';
 		SnackBarComponent,
 		PostFormComponent,
 		CreatePostComponent,
+		CommentFormComponent,
 		LoginComponent,
 		RegisterComponent,
 		HomeComponent,
@@ -50,6 +53,7 @@ import { LoggedGuard } from './guard/logged.guard';
 		MatSidenavModule,
 		MatListModule,
 		MatCardModule,
+		MatExpansionModule,
 		MatDividerModule,
 		MatButtonModule,
 		MatFormFieldModule,

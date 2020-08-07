@@ -31,6 +31,7 @@ export class CreatePostComponent implements OnInit {
 			id: 0,
 			body: this.body.value,
 			user: null,
+			comments: null,
 			created_at: null,
 			created_at_human: null,
 		}).pipe(first()).subscribe(
@@ -40,6 +41,9 @@ export class CreatePostComponent implements OnInit {
 				next.created_at = new Date();
 				next.created_at_human = 'now';
 				this.created.emit(next);
+				this.isBusy = false
+				this.body.setValue('');
+				this.body.setErrors(null);
 			},
 			(error) => this.isBusy = false
 		);
