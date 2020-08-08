@@ -24,6 +24,7 @@ import { CreatePostComponent } from './components/post-form/create/create.compon
 import { CommentFormComponent } from './components/comment-form/comment-form.component';
 import { LoginComponent } from './pages/login/login.component';
 import { RegisterComponent } from './pages/register/register.component';
+import { ProfileComponent } from './pages/profile/profile.component';
 import { HomeComponent } from './pages/home/home.component';
 import { TimelineComponent } from './pages/timeline/timeline.component';
 import { PostComponent } from './pages/post/post.component';
@@ -39,6 +40,7 @@ import { LoggedGuard } from './guard/logged.guard';
 		CommentFormComponent,
 		LoginComponent,
 		RegisterComponent,
+		ProfileComponent,
 		HomeComponent,
 		TimelineComponent,
 		PostComponent

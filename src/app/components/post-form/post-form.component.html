@@ -1,14 +1,14 @@
 <mat-card>
 	<mat-card-header>
-		<img mat-card-avatar src="" alt="Avatar">
-		<mat-card-title>{{ post?.user?.name }} <span>{{ post?.user?.country }}</span></mat-card-title>
+		<img mat-card-avatar [src]="post.user.avatar" alt="Avatar">
+		<mat-card-title>{{ post.user.name }} <span>{{ post.user.country }}</span></mat-card-title>
 		<mat-card-subtitle>
-			<a [routerLink]="['/posts', post?.id]">{{ post?.created_at_human }}</a>
+			<a [routerLink]="['/posts', post.id]">{{ post.created_at_human }}</a>
 		</mat-card-subtitle>
-		<button mat-icon-button (click)="onDelete($event)" [disabled]="isBusy" *ngIf="post?.user?.id == user?.id && !showEdit"><mat-icon>close</mat-icon></button>
+		<button mat-icon-button (click)="onDelete($event)" [disabled]="isBusy" *ngIf="post.user.id == user?.id && !showEdit"><mat-icon>close</mat-icon></button>
 	</mat-card-header>
 	<mat-card-content>
-		<p *ngIf="!showEdit">{{ post?.body }}</p>
+		<p *ngIf="!showEdit">{{ post.body }}</p>
 		<mat-form-field appearance="fill" *ngIf="showEdit">
 			<mat-label>Enter post body</mat-label>
 			<textarea matInput cdkTextareaAutosize [formControl]="body" rows="5"></textarea>
@@ -36,8 +36,8 @@
 		</mat-accordion>
 	</mat-card-content>
 	<mat-card-actions>
-		<button mat-raised-button color="accent" [disabled]="isBusy" (click)="showEdit = true" *ngIf="post?.user?.id == user?.id && !showEdit">Update</button>
-		<button mat-raised-button color="accent" [disabled]="isBusy" (click)="onUpdate($event)" *ngIf="post?.user?.id == user?.id && showEdit">Update</button>
-		<button mat-raised-button color="warn" [disabled]="isBusy" (click)="showEdit = false" *ngIf="post?.user?.id == user?.id && showEdit">Cancel</button>
+		<button mat-raised-button color="accent" [disabled]="isBusy" (click)="showEdit = true" *ngIf="post.user.id == user?.id && !showEdit">Update</button>
+		<button mat-raised-button color="accent" [disabled]="isBusy" (click)="onUpdate($event)" *ngIf="post.user.id == user?.id && showEdit">Update</button>
+		<button mat-raised-button color="warn" [disabled]="isBusy" (click)="showEdit = false" *ngIf="post.user.id == user?.id && showEdit">Cancel</button>
 	</mat-card-actions>
 </mat-card>

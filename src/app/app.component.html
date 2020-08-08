@@ -1,19 +1,20 @@
 <div class="container" [class.is-mobile]="mobileQuery.matches">
 	<mat-toolbar color="primary">
 		<button mat-icon-button (click)="snav.toggle()"><mat-icon>menu</mat-icon></button>
-		<span class="app-name">Title</span>
+		<span class="app-name">Luxury</span>
 		<span class="spacer"></span>
 		<a mat-icon-button routerLink="/login" *ngIf="!user"><i class="fas fa-sign-in-alt"></i></a>
+		<a mat-icon-button routerLink="/profile" *ngIf="user"><i class="fas fa-user-alt"></i></a>
 		<a mat-icon-button *ngIf="user" (click)="onLogout($event)"><i class="fas fa-sign-out-alt"></i></a>
 	</mat-toolbar>
 	<mat-sidenav-container [style.marginTop.px]="mobileQuery.matches ? 56 : 0">
 		<mat-sidenav #snav [mode]="mobileQuery.matches ? 'over' : 'side'" [fixedInViewport]="mobileQuery.matches" fixedTopGap="56" [opened]="!mobileQuery.matches">
 			<mat-nav-list>
-				<div class="profile">
-					<h2>Tarek</h2>
-					<img src="" alt="Avatar">
+				<div class="profile" *ngIf="user">
+					<h2>{{ user.name }}</h2>
+					<img [src]="user.avatar" alt="Avatar">
 				</div>
-				<mat-divider></mat-divider>
+				<mat-divider *ngIf="user"></mat-divider>
 				<a mat-list-item routerLink="/" routerLinkActive="list-item-active" [routerLinkActiveOptions]="{ exact: true }">
 					<i class="fas fa-home fa-fw"></i> Home
 				</a>

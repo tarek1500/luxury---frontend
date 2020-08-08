@@ -5,7 +5,6 @@ import { Observable } from 'rxjs';
 import { tap } from 'rxjs/operators'
 import { SnackBarService } from './snack-bar.service';
 import { UserStorageService } from './user-storage.service';
-import { IToken } from '../models/token';
 import { IUser } from '../models/user';
 import { loginUrl, registerUrl, logoutUrl } from './urls';
 
@@ -15,17 +14,17 @@ import { loginUrl, registerUrl, logoutUrl } from './urls';
 export class AuthService {
 	constructor(private http: HttpClient, private snackBarService: SnackBarService, private userStorageService: UserStorageService) { }
 
-	public login(credentials: { email: string, password: string }, device: string): Observable<IToken> {
-		return this.http.post<IToken>(loginUrl, {
+	public login(credentials: { email: string, password: string }, device: string): Observable<IUser> {
+		return this.http.post<IUser>(loginUrl, {
 			...credentials, device
 		}).pipe(tap(
 			(next) => {
 				const user: IUser = {
-					id: 0,
-					name: '',
+					id: next.id,
+					name: next.name,
 					email: credentials.email,
-					country: '',
-					avatar: null,
+					country: next.country,
+					avatar: next.avatar,
 					token: next.token
 				};
 
@@ -37,13 +36,13 @@ export class AuthService {
 		));
 	}
 
-	public register(data: { name: string, email: string, password: string, country: string }, device: string): Observable<IToken> {
-		return this.http.post<IToken>(registerUrl, {
+	public register(data: { name: string, email: string, password: string, country: string }, device: string): Observable<IUser> {
+		return this.http.post<IUser>(registerUrl, {
 			...data, device
 		}).pipe(tap(
 			(next) => {
 				const user: IUser = {
-					id: 0,
+					id: next.id,
 					name: data.name,
 					email: data.email,
 					country: data.country,

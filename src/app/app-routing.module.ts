@@ -6,6 +6,7 @@ import { TimelineComponent } from './pages/timeline/timeline.component';
 import { PostComponent } from './pages/post/post.component';
 import { LoginComponent } from './pages/login/login.component';
 import { RegisterComponent } from './pages/register/register.component';
+import { ProfileComponent } from './pages/profile/profile.component';
 import { GuestGuard } from './guard/guest.guard';
 import { LoggedGuard } from './guard/logged.guard';
 
@@ -39,6 +40,11 @@ const routes: Routes = [
 		path: 'register',
 		component: RegisterComponent,
 		canActivate: [GuestGuard]
+	},
+	{
+		path: 'profile',
+		component: ProfileComponent,
+		canActivate: [LoggedGuard]
 	},
 	{
 		path: '**',

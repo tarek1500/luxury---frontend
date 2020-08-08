@@ -10,7 +10,6 @@ export class RequestInterceptor implements HttpInterceptor {
 
 	intercept(request: HttpRequest<unknown>, next: HttpHandler): Observable<HttpEvent<unknown>> {
 		let headers = new HttpHeaders({
-			'Content-Type': 'application/json',
 			'Accept': 'application/json'
 		});
 

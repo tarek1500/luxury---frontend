@@ -1,0 +1,38 @@
+.container {
+	.card {
+		position: absolute;
+		top: 50%;
+		left: 50%;
+		transform: translate(-50%, -50%);
+
+		.avatar {
+			margin-bottom: 8px;
+			text-align: center;
+
+			img {
+				width: 175px;
+				height: 175px;
+				padding: 3px;
+				border-radius: 50%;
+				border: 2px solid black;
+				object-fit: cover;
+			}
+		}
+
+		mat-card-content {
+			margin: 0px;
+
+			mat-form-field {
+				width: 100%;
+
+				&:not(:last-child) {
+					margin-bottom: 8px;
+				}
+			}
+		}
+
+		mat-card-actions {
+			text-align: right;
+		}
+	}
+}

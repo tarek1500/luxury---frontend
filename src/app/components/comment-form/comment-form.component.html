@@ -1,9 +1,9 @@
 <mat-card>
 	<mat-card-header>
-		<img mat-card-avatar src="" alt="Avatar">
-		<mat-card-title>{{ comment.user?.name }} <span>{{ comment.user?.country }}</span></mat-card-title>
+		<img mat-card-avatar [src]="comment.user.avatar" alt="Avatar">
+		<mat-card-title>{{ comment.user.name }} <span>{{ comment.user.country }}</span></mat-card-title>
 		<mat-card-subtitle>{{ comment.created_at_human }}</mat-card-subtitle>
-		<button mat-icon-button (click)="onDelete($event)" [disabled]="isBusy" *ngIf="comment.user?.id == user?.id && !showEdit"><mat-icon>close</mat-icon></button>
+		<button mat-icon-button (click)="onDelete($event)" [disabled]="isBusy" *ngIf="comment.user.id == user?.id && !showEdit"><mat-icon>close</mat-icon></button>
 	</mat-card-header>
 	<mat-card-content>
 		<p *ngIf="!showEdit">{{ comment.body }}</p>
@@ -16,8 +16,8 @@
 		</mat-form-field>
 	</mat-card-content>
 	<mat-card-actions>
-		<button mat-raised-button color="accent" [disabled]="isBusy" (click)="showEdit = true" *ngIf="comment.user?.id == user?.id && !showEdit">Update</button>
-		<button mat-raised-button color="accent" [disabled]="isBusy" (click)="onUpdate($event)" *ngIf="comment.user?.id == user?.id && showEdit">Update</button>
-		<button mat-raised-button color="warn" [disabled]="isBusy" (click)="showEdit = false" *ngIf="comment.user?.id == user?.id && showEdit">Cancel</button>
+		<button mat-raised-button color="accent" [disabled]="isBusy" (click)="showEdit = true" *ngIf="comment.user.id == user?.id && !showEdit">Update</button>
+		<button mat-raised-button color="accent" [disabled]="isBusy" (click)="onUpdate($event)" *ngIf="comment.user.id == user?.id && showEdit">Update</button>
+		<button mat-raised-button color="warn" [disabled]="isBusy" (click)="showEdit = false" *ngIf="comment.user.id == user?.id && showEdit">Cancel</button>
 	</mat-card-actions>
 </mat-card>
