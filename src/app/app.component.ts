@@ -27,26 +27,32 @@ export class AppComponent implements OnInit, OnDestroy {
 		private authService: AuthService,
 		private snackBarService: SnackBarService
 	) {
+		// Subscribe if window size change
 		this.mobileQuery = media.matchMedia('(max-width: 600px)');
 		this.mobileQueryListener = () => changeDetectorRef.detectChanges();
 		this.mobileQuery.addListener(this.mobileQueryListener);
+		// Subscribe to user data on load
 		this.userSubscription = this.userStorageService.subject.subscribe((user) => {
 			this.user = user;
 		});
 	}
 
 	ngOnInit(): void {
+		// Get the user data on load
 		this.userStorageService.getUser();
 	}
 
 	ngOnDestroy(): void {
+		// Unsubscribe on destroy
 		this.mobileQuery.removeListener(this.mobileQueryListener);
 		this.userSubscription.unsubscribe();
 	}
 
 	onLogout(event) {
 		event.preventDefault();
+		// Send logout request
 		this.authService.logout('web').pipe(first()).subscribe(
+			// Show notification on success
 			(next) => this.snackBarService.showSnackBar(3000, 'Logged out successfully.', ['mat-toolbar', 'mat-accent'])
 		);
 	}

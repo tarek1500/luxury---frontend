@@ -12,13 +12,16 @@ export class LoggedGuard implements CanActivate {
 	constructor(private userStorageService: UserStorageService, private router: Router) { }
 
 	canActivate(next: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
+		// Subscribe to the user storage to check whenever the user changed
 		this.userStorageService.subject.pipe(first()).subscribe(
 			(next) => {
+				// Go to login if user is not existed
 				if (!this.userStorageService.user?.token)
 					this.router.navigate(['/login']);
 			}
 		);
 
+		// Go to login if user is not existed
 		if (!this.userStorageService.user?.token) {
 			this.router.navigate(['/login']);
 

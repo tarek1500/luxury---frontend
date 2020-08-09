@@ -16,32 +16,38 @@ export class CommentService {
 	constructor(private http: HttpClient, private snackBarService: SnackBarService) { }
 
 	public getAll(postId: number, page: number, perPage: number): Observable<IPaginate<IComments>> {
+		// Get all comments from ther server
 		return this.http.get<IPaginate<IComments>>(`${commentsUrl}?post_id=${postId}&page=${page}&per_page=${perPage}`).pipe(tap(
 			(next) => { },
 			(error) => {
+				// Show notification on error
 				this.snackBarService.showSnackBar(3000, error.error);
 			}
 		));
 	}
 
 	public create(comment: IComment, post: IPost): Observable<IComment> {
+		// Create a comment to the given post
 		return this.http.post<IComment>(commentsUrl, {
 			body: comment.body,
 			post_id: post.id
 		}).pipe(tap(
 			(next) => { },
 			(error) => {
+				// Show notification on error
 				this.snackBarService.showSnackBar(3000, error.error);
 			}
 		));
 	}
 
 	public update(comment: IComment): Observable<any> {
+		// Update a comment data
 		return this.http.put(`${commentsUrl}/${comment.id}`, {
 			body: comment.body
 		}).pipe(tap(
 			(next) => { },
 			(error) => {
+				// Show notification on error
 				if (error.status === 403)
 					error.error.message = 'Unauthorized.';
 
@@ -51,9 +57,11 @@ export class CommentService {
 	}
 
 	public delete(id: number): Observable<any> {
+		// Delete a comment
 		return this.http.delete(`${commentsUrl}/${id}`).pipe(tap(
 			(next) => { },
 			(error) => {
+				// Show notification on error
 				if (error.status === 403)
 					error.error.message = 'Unauthorized.';
 

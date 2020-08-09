@@ -27,6 +27,7 @@ export class CreatePostComponent implements OnInit {
 	onCreate(event): void {
 		this.isBusy = true;
 
+		// Create a post for the current user
 		this.postService.create({
 			id: 0,
 			body: this.body.value,
@@ -36,6 +37,7 @@ export class CreatePostComponent implements OnInit {
 			created_at_human: null,
 		}).pipe(first()).subscribe(
 			(next) => {
+				// Setup the new post data and emit it to the parent to add to posts' array
 				next.body = this.body.value;
 				next.user = this.userStorageService.user;
 				next.created_at = new Date();

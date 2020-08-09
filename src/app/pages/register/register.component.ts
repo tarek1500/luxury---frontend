@@ -15,6 +15,7 @@ export class RegisterComponent implements OnInit {
 	hidePassword = true;
 	isBusy = false;
 
+	// Initialize the form data
 	name = new FormControl('', [
 		Validators.required
 	]);
@@ -36,14 +37,17 @@ export class RegisterComponent implements OnInit {
 	onRegister(event): void {
 		this.isBusy = true;
 
+		// Send register request to the server
 		this.authService.register({
 			name: this.name.value,
 			email: this.email.value,
 			password: this.password.value,
 			country: this.country.value
 		}, 'web').pipe(first()).subscribe(
+			// Show notification on success
 			(next) => this.snackBarService.showSnackBar(3000, 'Registered successfully.', ['mat-toolbar', 'mat-accent']),
 			(error) => this.isBusy = false,
+			// Go to home on complete
 			() => this.router.navigate(['/'])
 		);
 	}

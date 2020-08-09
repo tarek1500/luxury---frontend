@@ -29,6 +29,7 @@ export class PostFormComponent implements OnInit {
 	}
 
 	ngOnInit(): void {
+		// Initialize the form data
 		this.body = new FormControl(this.post.body, [
 			Validators.required
 		]);
@@ -38,10 +39,12 @@ export class PostFormComponent implements OnInit {
 	}
 
 	onUpdate(event) {
+		// Copy the post and add body, to send to the api
 		this.isBusy = true;
 		let post = { ...this.post };
 		post.body = this.body.value;
 
+		// Send the new body to update
 		this.postService.update(post).pipe(first()).subscribe(
 			(next) => {
 				this.post.body = this.body.value
@@ -55,6 +58,7 @@ export class PostFormComponent implements OnInit {
 	onDelete(event) {
 		this.isBusy = true;
 
+		// Delete the select post
 		this.postService.delete(this.post.id).pipe(first()).subscribe(
 			(next) => {
 				this.deleted.emit(this.post.id);
@@ -68,6 +72,7 @@ export class PostFormComponent implements OnInit {
 	onCreateComment(event): void {
 		this.isBusy = true;
 
+		// Create a comment for the select post
 		this.commentService.create({
 			id: 0,
 			body: this.comment.value,
@@ -76,6 +81,7 @@ export class PostFormComponent implements OnInit {
 			created_at_human: null,
 		}, this.post).pipe(first()).subscribe(
 			(next) => {
+				// Setup the new comment data and push it to comments' array
 				next.body = this.comment.value;
 				next.user = this.userStorageService.user;
 				next.created_at = new Date();
@@ -90,6 +96,7 @@ export class PostFormComponent implements OnInit {
 	}
 
 	onCommentDeleted(id: number): void {
+		// Remove the comment from the array if the user delete it (after calling the API).
 		this.post.comments = this.post.comments.filter((comment) => comment.id !== id);
 	}
 }

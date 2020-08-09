@@ -27,16 +27,19 @@ export class CommentFormComponent implements OnInit {
 	}
 
 	ngOnInit(): void {
+		// Initialize the form data
 		this.body = new FormControl(this.comment.body, [
 			Validators.required
 		]);
 	}
 
 	onUpdate(event) {
+		// Copy the comment and add body, to send to the api
 		this.isBusy = true;
 		let comment = { ...this.comment };
 		comment.body = this.body.value;
 
+		// Send the new body to update
 		this.commentService.update(comment).pipe(first()).subscribe(
 			(next) => {
 				this.comment.body = this.body.value
@@ -50,6 +53,7 @@ export class CommentFormComponent implements OnInit {
 	onDelete(event) {
 		this.isBusy = true;
 
+		// Delete the select comment
 		this.commentService.delete(this.comment.id).pipe(first()).subscribe(
 			(next) => {
 				this.deleted.emit(this.comment.id);

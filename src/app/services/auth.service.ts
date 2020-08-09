@@ -15,10 +15,12 @@ export class AuthService {
 	constructor(private http: HttpClient, private snackBarService: SnackBarService, private userStorageService: UserStorageService) { }
 
 	public login(credentials: { email: string, password: string }, device: string): Observable<IUser> {
+		// Send login request
 		return this.http.post<IUser>(loginUrl, {
 			...credentials, device
 		}).pipe(tap(
 			(next) => {
+				// Save the user and token to the local storage
 				const user: IUser = {
 					id: next.id,
 					name: next.name,
@@ -31,16 +33,19 @@ export class AuthService {
 				this.userStorageService.setUser(user);
 			},
 			(error) => {
+				// Show notification on error
 				this.snackBarService.showSnackBar(3000, error.error);
 			}
 		));
 	}
 
 	public register(data: { name: string, email: string, password: string, country: string }, device: string): Observable<IUser> {
+		// Send register request
 		return this.http.post<IUser>(registerUrl, {
 			...data, device
 		}).pipe(tap(
 			(next) => {
+				// Save the user and token to the local storage
 				const user: IUser = {
 					id: next.id,
 					name: data.name,
@@ -53,19 +58,23 @@ export class AuthService {
 				this.userStorageService.setUser(user);
 			},
 			(error) => {
+				// Show notification on error
 				this.snackBarService.showSnackBar(3000, error.error);
 			}
 		));
 	}
 
 	public logout(device: string): Observable<any> {
+		// Send logout request
 		return this.http.post(logoutUrl, {
 			device
 		}).pipe(tap(
 			(next) => {
+				// Remove the user from local storage
 				this.userStorageService.setUser(null);
 			},
 			(error) => {
+				// Show notification on error
 				this.snackBarService.showSnackBar(3000, error.error);
 			}
 		));

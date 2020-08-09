@@ -15,6 +15,7 @@ export class LoginComponent implements OnInit {
 	hidePassword = true;
 	isBusy = false;
 
+	// Initialize the form data
 	email = new FormControl('', [
 		Validators.required,
 		Validators.email
@@ -30,12 +31,15 @@ export class LoginComponent implements OnInit {
 	onLogin(event): void {
 		this.isBusy = true;
 
+		// Send login request to the server
 		this.authService.login({
 			email: this.email.value,
 			password: this.password.value
 		}, 'web').pipe(first()).subscribe(
+			// Show notification on success
 			(next) => this.snackBarService.showSnackBar(3000, 'Logged in successfully.', ['mat-toolbar', 'mat-accent']),
 			(error) => this.isBusy = false,
+			// Go to home on complete
 			() => this.router.navigate(['/'])
 		);
 	}

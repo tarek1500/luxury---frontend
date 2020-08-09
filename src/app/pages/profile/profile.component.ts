@@ -27,8 +27,10 @@ export class ProfileComponent implements OnInit {
 	constructor(private router: Router, private profileService: ProfileService, private snackBarService: SnackBarService) { }
 
 	ngOnInit(): void {
+		// Get the user data from the server
 		this.profileService.show().pipe(first()).subscribe(
 			(next) => {
+				// Initialize the form data
 				this.name = new FormControl(next.name);
 				this.email = new FormControl(next.email, [
 					Validators.email
@@ -41,6 +43,7 @@ export class ProfileComponent implements OnInit {
 	}
 
 	onAvatarChange(event) {
+		// Change the avatar image if user try to upload new image
 		let reader = new FileReader();
 		this.avatar = event.target.files[0];
 
@@ -51,6 +54,7 @@ export class ProfileComponent implements OnInit {
 	onProfileUpdate(event): void {
 		this.isBusy = true;
 
+		// Send the new profile data to the server
 		this.profileService.update({
 			name: this.name.value,
 			email: this.email.value,
@@ -59,6 +63,7 @@ export class ProfileComponent implements OnInit {
 			avatar: this.avatar
 		}).pipe(first()).subscribe(
 			(next) => {
+				// Show notification on success
 				this.snackBarService.showSnackBar(3000, 'Profile updated successfully.', ['mat-toolbar', 'mat-accent']);
 				this.isBusy = false;
 				this.router.navigate(['/home']);
